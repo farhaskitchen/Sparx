@@ -15,10 +15,19 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/hexploits', {
+// MongoDB Cloud connection
+mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
+}).then(() => {
+    console.log('Connected to MongoDB Cloud');
+}).catch(err => {
+    console.error('MongoDB connection error:', err);
+    // Fallback to local MongoDB if cloud fails
+    mongoose.connect('mongodb://localhost:27017/hexploits', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
 });
 
 // Memory store for verification codes
