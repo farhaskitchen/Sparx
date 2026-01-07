@@ -1206,7 +1206,7 @@ app.get('/', (req, res) => {
         ">CLOSE</button>
     </div>
 
-    <div class="killswitch-hint">KILLSWITCH: `</div>
+    <div class="killswitch-hint">KILLSWITCH: \`</div>
 
     <script>
         const API_URL = window.location.origin + '/api';
